@@ -3,6 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 
 import { MembreServiceService } from '../membre-service.service'
 import { Membre } from 'src/app/models/membre';
+import { Observable, of } from 'rxjs';
 
 describe('MembreServiceService', () => {
   let mockService:MembreServiceService;
@@ -32,20 +33,16 @@ describe('MembreServiceService', () => {
   });
   it("Le service doit pouvoir récupérer la liste des membres",()=>{
     const result = 1
-    let membres :Membre[]=[];
+    let membres! :Membre[];
+    mockService.findAll().subscribe(data=>{
+      membres=data;
+    })
     const req = httpMock.expectOne({
       method:'GET',
       url:mockService.getPath()
     })
-    req.flush(membres)
-    
-    mockService.findAll().subscribe(res=>{
-      debugger 
-      res.forEach(membre=>{ 
-        membres.push(membre);
-      })
-      expect(membres.length).toEqual(result)  
-    })
+    req.flush([Membre])
+    expect(membres.length).toEqual(result)
     
   })
   afterEach(() => {
