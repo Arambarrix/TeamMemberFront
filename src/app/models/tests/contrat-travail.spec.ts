@@ -1,4 +1,4 @@
-import { ContratTravail } from './contrat-travail';
+import { ContratTravail } from '../contrat-travail';
 
 describe('ContratTravail', () => {
   it('should create an instance', () => {
