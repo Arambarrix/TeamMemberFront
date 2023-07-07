@@ -1,12 +1,13 @@
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-
+import { Injectable } from "@angular/core";
+import { Observable, catchError } from "rxjs";
+@Injectable({
+    providedIn: 'root'
+})
 export abstract class Service<T>{
     private path="http://localhost:8080/api/";
     private url! :string;
-    private http!:HttpClient;
-    constructor(http:HttpClient,url:string){
-        this.http=http
+    constructor(private http:HttpClient,url:string){
         this.setUrl(url)
     }
   public setUrl(url:string):void{
@@ -19,19 +20,22 @@ export abstract class Service<T>{
   public findAll (): Observable<T[]> {
     return this.http.get<T[]>(this.path);
   }
-  public findOne <T>(id:string): Observable<T> {
+  public findOne(id:number): Observable<T> {
     return this.http.get<T>(this.path+"/"+id);
   }
   public createOne(t:any):void {
     this.http.post(this.path,t);
   }
-  public updateOne(id:string,t:any):void{
+  public updateOne(id:number,t:any):void{
     this.http.put(this.path+"/"+id,t);
   }
-  public deleteOne(id:string):void {
+  public deleteOne(id:number):void {
     this.http.delete(this.path+"/"+id)
   }
   public deleteAll():void{
     this.http.delete(this.path)
+  }
+  public getHttp():HttpClient{
+    return this.http;
   }
 }
