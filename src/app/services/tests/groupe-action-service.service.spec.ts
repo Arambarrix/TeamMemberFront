@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GroupeActionServiceService } from './groupe-action-service.service';
+import { GroupeActionServiceService } from '../groupe-action-service.service';
 
 describe('GroupeActionServiceService', () => {
   let service: GroupeActionServiceService;
