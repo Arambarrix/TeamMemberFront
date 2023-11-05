@@ -11,6 +11,7 @@ import { DetailProjetComponent } from './pages/detail-projet/detail-projet.compo
 import { DetailEquipeComponent } from './pages/detail-equipe/detail-equipe.component';
 import { ConversationsComponent } from './pages/conversations/conversations.component';
 import { ParametresComponent } from './pages/parametres/parametres.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ParametresComponent } from './pages/parametres/parametres.component';
     DetailProjetComponent,
     DetailEquipeComponent,
     ConversationsComponent,
-    ParametresComponent
+    ParametresComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
